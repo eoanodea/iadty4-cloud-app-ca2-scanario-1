@@ -2,9 +2,9 @@
 class Connection {
 
     private static $host = "localhost";
-    private static $database = "cloud_festivals_db";
+    private static $database = "cloud_festivals_ca2";
     private static $username = "root";
-    private static $password = "";
+    private static $password = "root";
 
     public static function getInstance() {
         $dsn = 'mysql:host=' . Connection::$host . ';dbname=' . Connection::$database;
