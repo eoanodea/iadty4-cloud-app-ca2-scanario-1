@@ -1,0 +1,19 @@
+{
+  "name": "eoan/festival-cloud",
+  "type": "project",
+  "description": "Cloud App Festival App",
+  "require": {
+    "aws/aws-sdk-php": "^3.173"
+  },
+  "autoload": {
+    "psr-4": {
+      "AWSCognitoApp\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "Eoan O Dea",
+      "email": "odeaeoan@gmail.com"
+    }
+  ]
+}
