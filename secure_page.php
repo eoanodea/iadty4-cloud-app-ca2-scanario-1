@@ -46,16 +46,16 @@ else{
 
 $access_token = $_GET["access_token"];
 
-$region = 'ap-south-1';
-$version = '<AWS_REGION>';
+$region = 'us-east-1';
+$version = '2016-04-18';
 
 //Authenticate with AWS Acess Key and Secret
 $client = new CognitoIdentityProviderClient([
     'version' => $version,
     'region' => $region,
 	'credentials' => [
-                    'key'    => '<AWS_ACCESS_KEY>',
-                    'secret' => '<AWS_SECRET>',
+                    'key'    => 'ASIA4RELRWZWZKV7GSW3',
+                    'secret' => 'Pm2Hf8f13q687FbP1xqJj1Rx/pZigDGcwKqua9n',
                 ],
 ]);
 
@@ -91,7 +91,7 @@ try {
 			'AccessToken' => $access_token,
 		]);
 		
-		header("Location: <COGNITO_HOSTED_UI_URL>");
+		header("Location: https://festival-app.auth.us-east-1.amazoncognito.com/login?client_id=788pbdt0lnh6o7taenjn40g8h3&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=http://localhost:8888/festivalCloud/secure_page.php");
 		
 	}
 	
