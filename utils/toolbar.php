@@ -13,30 +13,35 @@
 	}
 	
 </script>
+  <?php
+      require_once 'functions.php';
+      require_once __DIR__ . '/../classes/Auth.php'; //:)
+      $auth = new Auth();
+      $query = "";
+
+      if($auth->loggedIn()) {
+        $query = 'access_token='.$auth->getAccessToken();
+      }
+
+        ?>
   <div class="container">
-    <a class="navbar-brand" href="<?php echo BASE_URL ?>">FestivalCloud</a>
+    <a class="navbar-brand" href="<?php echo BASE_URL . '?' . $query ?>">FestivalCloud</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <?php
-        require_once 'functions.php';
-        require_once __DIR__ . '/../classes/Auth.php'; //:)
-        $auth = new Auth();
- 
+          echo '<a class="nav-link" href="'.BASE_URL. '?' . $query .'">Home</a>';
+          echo '<a class="nav-link" href="'.BASE_URL.'/views/festivals/index.php?'. $query .'">Festivals</a>';
+          echo '<a class="nav-link" href="'.BASE_URL.'/views/stages/index.php?'. $query .'">Stages</a>';
+          echo '<a class="nav-link" href="'.BASE_URL.'/views/shows/index.php?'. $query .'">Shows</a>';
+          echo '<a class="nav-link" href="'.BASE_URL.'/views/performers/index.php?'. $query .'">Performers</a>';
 
-        if($auth->loggedIn()) {
-          echo '<p>Hi, ' . $auth->getEmail() . '</p>';
-          echo '<a class="nav-link" href="'.BASE_URL.'">Sign Out</a>';
-        } else echo '<a class="nav-link" href="'. $auth->getSignInURL() . '">Sign In</a>';
-
-
-        echo '<a class="nav-link" href="'.BASE_URL.'">Home</a>';
-        echo '<a class="nav-link" href="'.BASE_URL.'/views/festivals/index.php">Festivals</a>';
-        echo '<a class="nav-link" href="'.BASE_URL.'/views/stages/index.php">Stages</a>';
-        echo '<a class="nav-link" href="'.BASE_URL.'/views/shows/index.php">Shows</a>';
-        echo '<a class="nav-link" href="'.BASE_URL.'/views/performers/index.php">Performers</a>';
+          if($auth->loggedIn()) {
+            echo '<p class="nav-link">Hi, ' . $auth->getEmail() . '</p>';
+            echo '<a class="nav-link" href="'.BASE_URL.'">Sign Out</a>';
+          } else echo '<a class="nav-link" href="'. $auth->getSignInURL() . '">Sign In</a>';
         ?>
       </div>
     </div>

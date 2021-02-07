@@ -9,7 +9,7 @@ class Auth {
     private static $version = "2016-04-18";
     public static $url = "https://festival-app.auth.us-east-1.amazoncognito.com/login?client_id=788pbdt0lnh6o7taenjn40g8h3&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=http://localhost:8888/festivalCloud/index.php";
 
-    public $access_token;
+    public $access_token = null;
     public $email;
     public $phone;
     public $isLoggedIn=false;    
@@ -28,13 +28,17 @@ class Auth {
         return $this->isLoggedIn;
     }
 
+    public function getAccessToken() {
+        return $this->access_token;
+    }
+
     public static function getSignInURL() {
         return Auth::$url;
     }
 
 
     public function authenticate() {
-        $access_token = htmlspecialchars($_GET["access_token"]);
+        $this->access_token = htmlspecialchars($_GET["access_token"]);
       
         $client = new CognitoIdentityProviderClient([
             'version' => Auth::$version,
@@ -48,7 +52,7 @@ class Auth {
         try {
             //Get the User data by passing the access token received from Cognito
             $result = $client->getUser([
-                'AccessToken' => $access_token,
+                'AccessToken' => $this->access_token,
             ]);
             
                 
@@ -68,7 +72,7 @@ class Auth {
             if(isset($_GET["logout"]) && $_GET["logout"] == 'true'){
                 //This will invalidate the access token
                 $result = $client->globalSignOut([
-                    'AccessToken' => $access_token,
+                    'AccessToken' => $this->access_token,
                 ]);
                 
                 header("Location: " + $this->url);
