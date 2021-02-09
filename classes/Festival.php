@@ -1,6 +1,7 @@
 <?php
 require_once 'Connection.php';
 
+
 class Festival {
     public $id;
     public $title;

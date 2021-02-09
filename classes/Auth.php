@@ -12,7 +12,8 @@ class Auth {
     public $access_token = null;
     public $email;
     public $phone;
-    public $isLoggedIn=false;    
+    public $isLoggedIn=false; 
+    public $errorMessage = null;
 
     public function __construct() {        
         if(isset($_GET["access_token"])) {
@@ -20,8 +21,19 @@ class Auth {
         }
     }
 
+    public function redirect($msg) {
+        $url = BASE_URL . "?error=" . $msg;
+        
+        header("Location: " . $url, true);
+        exit();
+    }
+
     public function getEmail() {
         return $this->email;
+    }
+
+    public function getError() {
+        return $this->errorMessage;
     }
 
     public function loggedIn() {
@@ -75,14 +87,17 @@ class Auth {
                     'AccessToken' => $this->access_token,
                 ]);
                 
-                header("Location: " + $this->url);
+                $this->isLoggedIn = false;
+                header("Location: " + BASE_URL, true);
             }
             
             
         } catch (\Aws\CognitoIdentityProvider\Exception\CognitoIdentityProviderException $e) {
-            echo 'FAILED TO VALIDATE THE ACCESS TOKEN. ERROR = ' . $e->getMessage();
+            $this->errorMessage = "You are not logged in";
+            // $this->errorMessage = 'FAILED TO VALIDATE THE ACCESS TOKEN. ERROR = ' . $e->getMessage();
+            
         } catch (\Aws\Exception\CredentialsException $e) {
-            echo 'FAILED TO AUTHENTICATE AWS KEY AND SECRET. ERROR = ' . $e->getMessage();
+            $this->errorMessage = 'FAILED TO AUTHENTICATE AWS KEY AND SECRET. ERROR = ' . $e->getMessage();
         }
     }
 }

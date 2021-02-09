@@ -26,6 +26,14 @@
                   <br>
                     <h2>Welcome to the Cloud Festivals Website</h2>
                     <br>
+                    <?php if(isset($_GET['error'])) {
+                        ?> <div class="alert alert-danger" role="alert">
+                        <?= $_GET['error'] ?>, <a href="<?= $auth->getSignInURL(); ?>" class="alert-link">Click here to login</a> 
+
+                      </div>
+                      <?php
+                    }
+                    ?>
                 </div>
             </div>
             <div class="row">
