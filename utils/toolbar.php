@@ -18,44 +18,11 @@
     $auth = new Auth();
     $query = "";
 
-// var_dump($_SERVER['HTTP_HOST']);
-// var_dump($_SERVER['REQUEST_URI']);
-
     if($auth->loggedIn()) {
       $query = 'access_token='.$auth->getAccessToken();
     } else if(strpos($_SERVER['REQUEST_URI'], 'views/')) {
       $auth->redirect("You have to be logged in to view this page");        
     }
-      //window.location.href
-
-      // echo $_SERVER['SERVER_PROTOCOL'];
-      
-      // echo BASE_URL . " 8====🦆====3 ";
-      // echo $url;
-      // header("Location: " . BASE_URL, true);
-
-      // $auth->redirect();
-      // echo $auth->getError();
-      // $query = "error=" . $auth->getError();
-    
-
-    // else {
-    //   echo '<script>
-    //     if("'.BASE_URL.'/" !== window.location.origin + window.location.pathname) {
-    //       console.log("here is ", window.location.origin + window.location.pathname);
-    //       //console.log("' . BASE_URL . '?error=' . $auth->getError() . '");
-    //       // window.location.href = "' . BASE_URL . '?error=You are not logged in;"
-    //       window.location.search = "?error=You are not logged in";
-
-    //     } 
-    //     </script>';
-    // }
-    //http://localhost:3000/?error=hello
-  
-    
-    // if($_GET['error']) {
-    //   echo '<script>window.location = "' . BASE_URL . '?error=' . $auth->getError() . '"</script>';
-    // }
   ?>
 
 
