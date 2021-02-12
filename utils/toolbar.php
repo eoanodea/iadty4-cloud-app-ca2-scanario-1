@@ -21,7 +21,7 @@
     if($auth->loggedIn()) {
       $query = 'access_token='.$auth->getAccessToken();
     } else if(strpos($_SERVER['REQUEST_URI'], 'views/')) {
-      $auth->redirect("You have to be logged in to view this page");        
+      // $auth->redirect("You have to be logged in to view this page");        
     }
   ?>
 

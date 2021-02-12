@@ -28,7 +28,7 @@ catch (Exception $ex) {
             <div class="row">
                 <div class="col-md-12">
                     <form method="POST"
-                          action="store.php"
+                          action="store.php?<?= $query ?>"
                           role="form"
                           class="form-horizontal"
                           enctype="multipart/form-data"

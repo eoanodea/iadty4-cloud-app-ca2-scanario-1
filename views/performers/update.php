@@ -68,7 +68,8 @@ try {
     }
     $performer->save();
 
-    header("Location: index.php");
+        header("Location: index.php?access_token=" . htmlspecialchars($_GET["access_token"]));
+
 }
 catch (Exception $ex) {
   // dd();

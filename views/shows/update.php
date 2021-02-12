@@ -61,7 +61,8 @@ try {
     $show->stage_id = $validated_data['stage_id'];
     $show->save();
 
-    header("Location: index.php");
+        header("Location: index.php?access_token=" . htmlspecialchars($_GET["access_token"]));
+
 }
 catch (Exception $ex) {
   // dd();

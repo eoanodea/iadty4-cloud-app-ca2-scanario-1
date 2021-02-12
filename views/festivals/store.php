@@ -5,7 +5,7 @@ require_once '../../utils/functions.php';
 
 try {
     $validator = new GUMP();
-
+    
     $_POST = $validator->sanitize($_POST);
 
     $validation_rules = array(
@@ -60,7 +60,7 @@ try {
 
     $festival->save();
 
-    header("Location: index.php");
+    header("Location: index.php?access_token=" . htmlspecialchars($_GET["access_token"]));
 }
 catch (Exception $ex) {
     require 'create.php';

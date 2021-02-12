@@ -20,12 +20,13 @@ require_once '../../utils/functions.php';
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form method="POST"
-                          action="store.php"
-                          role="form"
-                          class="form-horizontal"
-                          enctype="multipart/form-data"
-                          >
+                    <form 
+                        method="POST"
+                        action="store.php?<?= $query ?>"
+                        role="form"
+                        class="form-horizontal"
+                        enctype="multipart/form-data"
+                        >
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <h2>Create performer form</h2>
