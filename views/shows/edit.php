@@ -64,7 +64,7 @@ catch (Exception $ex) {
                           class="form-horizontal"
                           enctype="multipart/form-data"
                           >
-                        <input type="hidden" name="id" value="<?= $show->id . '&' . $query ?>" />
+                        <input type="hidden" name="id" value="<?= $show->id ?>" />
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <h2>Edit show form</h2>
@@ -75,7 +75,7 @@ catch (Exception $ex) {
                             <div class="col-md-6">
                                 <select class="form-control" id="performer_id" name="performer_id">
                                     <?php foreach ($performers as $performer) { ?>
-                                        <option <?= ($performer->id === $show->performer_id) ? 'selected' : '' ?> value="<?= $performer->id . '&' . $query ?>"><?= $performer->title ?></option>
+                                        <option <?= ($performer->id === $show->performer_id) ? 'selected' : '' ?> value="<?= $performer->id ?>"><?= $performer->title ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -88,7 +88,7 @@ catch (Exception $ex) {
                             <div class="col-md-6">
                                 <select class="form-control" id="stage_id" name="stage_id">
                                     <?php foreach ($stages as $stage) { ?>
-                                        <option <?= ($stage->id === $show->stage_id) ? 'selected' : '' ?> value="<?= $stage->id . '&' . $query ?>"><?= $stage->title ?></option>
+                                        <option <?= ($stage->id === $show->stage_id) ? 'selected' : '' ?> value="<?= $stage->id  ?>"><?= $stage->title ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

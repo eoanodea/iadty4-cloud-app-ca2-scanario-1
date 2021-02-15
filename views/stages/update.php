@@ -9,6 +9,7 @@ try {
 
     $_POST = $validator->sanitize($_POST);
 
+
     $validation_rules = array(
         'id' => 'required|integer|min_numeric,1',
         'title' => 'required|min_len,1|max_len,100',
@@ -17,18 +18,31 @@ try {
         'festival_id' => 'required|integer|min_numeric,1'
     );
     $filter_rules = array(
-    	'id' => 'trim|sanitize_numbers',
+        'id' => 'trim|sanitize_numbers',
       'title' => 'trim|sanitize_string',
       'description' => 'trim|sanitize_string',
       'location' => 'trim|sanitize_string',
       'festival_id' => 'trim|sanitize_numbers'
     );
 
+    // Extract token from post ID
+    $parts = preg_split('@(?=&)@', $_POST['festival_id']);
+
+    // Split up values
+    $id = intval($parts[0]);
+
+    // Removes "&" from beginning of string
+    $token = substr($parts[1], 1);
+
+    // Set post id to be token before validation
+    $_POST['festival_id'] = $id;
+
+
     $validator->validation_rules($validation_rules);
     $validator->filter_rules($filter_rules);
     
     $validated_data = $validator->run($_POST);
-    $id = $_POST['id'];
+
     $fileName = time();
     $stage = Stage::find($id);
     
@@ -60,8 +74,9 @@ try {
 
     }
     
-// dd($errors);
+
     if (!empty($errors)) {
+dd($errors);
         throw new Exception("There were errors. Please fix them.");
     }
 
@@ -77,7 +92,7 @@ try {
     }
     $stage->save();
 
-        header("Location: index.php?access_token=" . htmlspecialchars($_GET["access_token"]));
+    header("Location: index.php?" . htmlspecialchars($token));
 
 }
 catch (Exception $ex) {

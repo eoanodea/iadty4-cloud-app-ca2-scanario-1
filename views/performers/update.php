@@ -23,11 +23,24 @@ try {
       'contact_phone' => 'trim|sanitize_string'
     );
 
+
+    // Extract token from post ID
+    $parts = preg_split('@(?=&)@', $_POST['id']);
+
+    // Split up values
+    $id = intval($parts[0]);
+
+    // Removes "&" from beginning of string
+    $token = substr($parts[1], 1);
+
+    // Set post id to be token before validation
+    $_POST['id'] = $id;
+
     $validator->validation_rules($validation_rules);
     $validator->filter_rules($filter_rules);
     
     $validated_data = $validator->run($_POST);
-    $id = $_POST['id'];
+    
     $fileName = time();
     $performer = Performer::find($id);
     
@@ -68,7 +81,7 @@ try {
     }
     $performer->save();
 
-        header("Location: index.php?access_token=" . htmlspecialchars($_GET["access_token"]));
+    header("Location: index.php?" . htmlspecialchars($token));
 
 }
 catch (Exception $ex) {

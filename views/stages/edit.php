@@ -71,7 +71,7 @@ catch (Exception $ex) {
                           class="form-horizontal"
                           enctype="multipart/form-data"
                           >
-                        <input type="hidden" name="id" value="<?= $stage->id . '&' . $query ?>" />
+                        <input type="hidden" name="id" value="<?= $stage->id ?>" />
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <h2>Edit stage form</h2>

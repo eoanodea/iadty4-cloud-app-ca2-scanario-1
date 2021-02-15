@@ -45,7 +45,7 @@ catch (Exception $ex) {
                             <div class="col-md-6">
                                 <select class="form-control" id="performer_id" name="performer_id">
                                     <?php foreach ($performers as $performer) { ?>
-                                        <option value="<?= $performer->id . '&' . $query ?>"><?= $performer->title ?></option>
+                                        <option value="<?= $performer->id?>"><?= $performer->title ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -58,7 +58,7 @@ catch (Exception $ex) {
                             <div class="col-md-6">
                                 <select class="form-control" id="stage_id" name="stage_id">
                                     <?php foreach ($stages as $stage) { ?>
-                                        <option value="<?= $stage->id . '&' . $query ?>"><?= $stage->title ?></option>
+                                        <option value="<?= $stage->id ?>"><?= $stage->title ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

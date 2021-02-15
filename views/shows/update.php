@@ -23,11 +23,24 @@ try {
       'performer_id' => 'trim|sanitize_numbers'
     );
 
+    // Extract token from post ID
+    $parts = preg_split('@(?=&)@', $_POST['id']);
+
+    // Split up values
+    $id = intval($parts[0]);
+
+    // Removes "&" from beginning of string
+    $token = substr($parts[1], 1);
+
+    // Set post id to be token before validation
+    $_POST['id'] = $id;
+
+
     $validator->validation_rules($validation_rules);
     $validator->filter_rules($filter_rules);
     
     $validated_data = $validator->run($_POST);
-    $id = $_POST['id'];
+
     $fileName = time();
     $show = Show::find($id);
     
@@ -61,7 +74,7 @@ try {
     $show->stage_id = $validated_data['stage_id'];
     $show->save();
 
-        header("Location: index.php?access_token=" . htmlspecialchars($_GET["access_token"]));
+    header("Location: index.php?access_token=" . htmlspecialchars($_GET['access_token']));
 
 }
 catch (Exception $ex) {

@@ -70,7 +70,7 @@ catch (Exception $ex) {
                             <div class="col-md-6">
                                 <select class="form-control" id="festival_id" name="festival_id">
                                     <?php foreach ($festivals as $festival) { ?>
-                                        <option value="<?= $festival->id . '&' . $query ?>"><?= $festival->title ?></option>
+                                        <option value="<?= $festival->id ?>"><?= $festival->title ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
